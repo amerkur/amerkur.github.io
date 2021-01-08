@@ -4,7 +4,7 @@ from django import forms
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
-# task_list = [] global variable and not safe to use without sessions => request.session["task_list"]=[]
+task_list = [] 
 
 # Create your views here.
 
@@ -13,12 +13,8 @@ class NewTaskForm(forms.Form):
     add_priority = forms.IntegerField(label="Priority", min_value=1, max_value=10)
 
 def index(request):
-    if "task_list" not in request.session:
-        request.session["task_list"] = [] # need to run migrate as Django needs a table now
-    
-
     return render(request, "tasks/index.html", {
-        "todos": request.session["task_list"]
+        "todos": task_list
     })
 
 def add(request):
