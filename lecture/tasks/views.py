@@ -27,7 +27,7 @@ def add(request):
         if form.is_valid():
             form_add_task = form.cleaned_data["add_task"]
             form_add_priority = form.cleaned_data["add_priority"]
-            task_list.append({'task': form_add_task, 'num': form_add_priority})
+            request.session["task_list"] += [{'task': form_add_task, 'num': form_add_priority}]
             return HttpResponseRedirect(reverse('tasks:index'))
         else:
             return render(request, 'tasks/add.html', {

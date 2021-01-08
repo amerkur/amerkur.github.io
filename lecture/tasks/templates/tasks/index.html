@@ -1,11 +1,22 @@
 {% extends 'tasks/layout.html' %}
 {% block body %}
 <h1>Task List</h1>
-<ul>
-{% for field in todos %}
-    <li>{{ field.task }}: {{ field.num }}</li>
+
+<table>
+    <thead>
+        <th>Task</th>
+        <th>Priority</th>
+    </thead>
+{% for todo in todos %}
+
+    <tr>
+        <td>{{ todo.task }}</td>
+        <td>{{ todo.num }}</td>
+    </tr>
+
 {% endfor %}
-</ul>
+
+</table>
 
 <a href="{% url 'tasks:add' %}">Add New Task</a>
 
